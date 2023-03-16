@@ -55,7 +55,8 @@ router.route("/").post(upload.single("file"), productController.createProduct);
 router.route("/:filter").get(productController.getProduct);
 router
   .route("/:id")
-  .patch(upload.single("file"), productController.patchProductById);
+  .patch(upload.single("file"), productController.patchProductById)
+  .delete(productController.deleteProductById);
 
 router.route("/image/:name").get(productController.getImageById);
 

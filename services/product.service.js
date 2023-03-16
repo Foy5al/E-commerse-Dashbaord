@@ -18,6 +18,10 @@ exports.getProductServiceById = async (id) => {
   const result = await product.findById(id);
   return result;
 };
+exports.deleteProductServiceById = async (id) => {
+  const result = await product.findByIdAndDelete(id);
+  return result;
+};
 
 exports.patchProductServiceById = async (productId, patchData, newFileName) => {
   if (newFileName) {
