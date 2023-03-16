@@ -1,5 +1,6 @@
 const product = require("../models/products");
 const fs = require("fs");
+const path = require("path");
 
 exports.createProductService = async (data, imageFile) => {
   if (imageFile) {
