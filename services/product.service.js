@@ -1,4 +1,5 @@
 const product = require("../models/products");
+const fs = require("fs");
 
 exports.createProductService = async (data, imageFile) => {
   if (imageFile) {
@@ -18,7 +19,12 @@ exports.getProductServiceById = async (id) => {
   return result;
 };
 
-exports.patchProductServiceById = async (productId, patchData) => {
+exports.patchProductServiceById = async (productId, patchData, newFileName) => {
+  if (newFileName) {
+    fs.unlinkSync(`./uploads/${patchData.productImage}`);
+    patchData.productImage = newFileName;
+  }
+
   const result = await product.updateOne(
     { _id: productId },
     { $set: patchData },

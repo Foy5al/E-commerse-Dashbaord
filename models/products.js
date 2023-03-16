@@ -47,8 +47,13 @@ const productsSchema = mongoose.Schema(
     ProductDeleted: {
       type: Boolean,
     },
+    createdBy: {
+      type: String,
+    },
+    updatedBy: {
+      type: String,
+    },
   },
-
   { timestamps: true }
 );
 const product = mongoose.model("product", productsSchema);

@@ -34,7 +34,7 @@ const upload = multer({
     fileSize: 5000000, //5mb
   },
   fileFilter: (req, file, cb) => {
-    console.log(file);
+    // console.log(file);
     if (file.fieldname === "file") {
       if (
         file.mimetype === "image/png" ||
@@ -53,6 +53,10 @@ const upload = multer({
 
 router.route("/").post(upload.single("file"), productController.createProduct);
 router.route("/:filter").get(productController.getProduct);
-router.route("/:id").patch(productController.patchProductById);
+router
+  .route("/:id")
+  .patch(upload.single("file"), productController.patchProductById);
+
+router.route("/image/:name").get(productController.getImageById);
 
 module.exports = router;

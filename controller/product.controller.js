@@ -1,3 +1,7 @@
+const fs = require("fs");
+exports.projectContentName = () => {
+  return "mrzero@backlog.dev";
+};
 const {
   createProductService,
   getProductService,
@@ -77,16 +81,39 @@ exports.getProductById = async (req, res, next) => {
 exports.patchProductById = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const result = await patchProductServiceById(id, req.body);
+    const result = await patchProductServiceById(
+      id,
+      req.body,
+      req?.file?.filename
+    );
     res.status(200).json({
       status: "success",
       message: "Data get successfully",
-      data: result,
+      data: "result",
     });
   } catch (error) {
     res.status(400).json({
       status: "error",
       message: "Data couldn't get",
+      error: error.message,
+    });
+  }
+};
+exports.getImageById = async (req, res, next) => {
+  try {
+    const { name } = req.params;
+    console.log(`mal aise`);
+    // Set the content type to image/jpeg or image/png depending on your image type
+    res.setHeader("Content-Type", "image/png");
+
+    // Read the image file using fs
+    const image = fs.readFileSync(`./uploads/${name}`);
+    // Send the image data as the response
+    res.send(image);
+  } catch (error) {
+    res.status(400).json({
+      status: "error",
+      message: "Image not found",
       error: error.message,
     });
   }
