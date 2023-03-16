@@ -25,7 +25,13 @@ exports.deleteProductServiceById = async (id) => {
 
 exports.patchProductServiceById = async (productId, patchData, newFileName) => {
   if (newFileName) {
-    fs.unlinkSync(`./uploads/${patchData.productImage}`);
+    const imagePath = await path.join(
+      process.cwd(),
+      "uploads",
+      patchData.productImage
+    );
+    const image = await fs.unlinkSync(imagePath);
+    //fs.unlinkSync(`./uploads/${patchData.productImage}`);
     patchData.productImage = newFileName;
   }
 
