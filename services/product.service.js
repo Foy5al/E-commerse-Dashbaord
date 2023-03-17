@@ -37,11 +37,10 @@ exports.patchProductServiceById = async (productId, patchData, newFileName) => {
     }
   }
 
-  /*  const result = await product.updateOne(
+  const result = await product.updateOne(
     { _id: productId },
     { $set: patchData },
     { runValidators: true }
-  ); */
-  console.log(patchData);
-  return "result";
+  );
+  return result;
 };
