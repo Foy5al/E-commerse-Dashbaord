@@ -16,6 +16,8 @@ router.get("/list", userController.getUsers);
 router
   .route("/list/:id")
   .get(userController.getUser)
+  /* .put(userController.updateUser)
+  .delete(userController.deleteUser); */
   .put(verifyToken, authorization("admin"), userController.updateUser)
   .delete(verifyToken, authorization("admin"), userController.deleteUser);
 

@@ -36,17 +36,16 @@ exports.getUserInfoSchema = async (id) => {
 };
 
 exports.updateUserInfoSchema = async (id, data) => {
-  const query = { _id: ObjectId(id) };
   let { password, confirmPassword, ...updatedData } = data;
   if (data.password) {
     const hashedPassword = bcryptjs.hashSync(data.password);
     updatedData.password = hashedPassword;
   }
-  const result = await user.updateMany(query, updatedData);
+  console.log(data, updatedData);
+  const result = await user.findByIdAndUpdate(id, updatedData);
   return result;
 };
 exports.deleteUserInfoSchema = async (id) => {
-  const query = { _id: ObjectId(id) };
-  const result = await user.deleteOne(query);
+  const result = await user.findByIdAndDelete(id);
   return result;
 };
