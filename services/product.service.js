@@ -26,15 +26,22 @@ exports.deleteProductServiceById = async (id) => {
 
 exports.patchProductServiceById = async (productId, patchData, newFileName) => {
   if (newFileName) {
-    const imagePath = path.join(os.tmpdir(), patchData.productImage);
-    const image = fs.unlinkSync(imagePath);
-    patchData.productImage = newFileName;
+    if (!patchData.productImage) {
+      console.log("condition applied");
+      patchData.append;
+      patchData.productImage = newFileName;
+    } else {
+      const imagePath = path.join(os.tmpdir(), patchData.productImage);
+      const image = fs.unlinkSync(imagePath);
+      patchData.productImage = newFileName;
+    }
   }
 
-  const result = await product.updateOne(
+  /*  const result = await product.updateOne(
     { _id: productId },
     { $set: patchData },
     { runValidators: true }
-  );
-  return result;
+  ); */
+  console.log(patchData);
+  return "result";
 };
