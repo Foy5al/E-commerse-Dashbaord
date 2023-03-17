@@ -39,7 +39,7 @@ const productsSchema = mongoose.Schema(
       required: [true, "please provide your product price"],
     },
 
-    productStock: [stockSchema],
+    productStock: stockSchema,
 
     productSold: {
       type: Number,

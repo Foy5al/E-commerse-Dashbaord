@@ -31,7 +31,11 @@ exports.patchProductServiceById = async (productId, patchData, newFileName) => {
       patchData.append;
       patchData.productImage = newFileName;
     } else {
-      const imagePath = path.join(os.tmpdir(), patchData.productImage);
+      const imagePath = path.join(
+        process.cwd(),
+        "uploads",
+        patchData.productImage
+      );
       const image = fs.unlinkSync(imagePath);
       patchData.productImage = newFileName;
     }

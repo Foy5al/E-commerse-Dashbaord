@@ -18,7 +18,7 @@ router
   .get(userController.getUser)
   /* .put(userController.updateUser)
   .delete(userController.deleteUser); */
-  .put(verifyToken, authorization("admin"), userController.updateUser)
-  .delete(verifyToken, authorization("admin"), userController.deleteUser);
+  .put(userController.updateUser)
+  .delete(userController.deleteUser);
 
 module.exports = router;
