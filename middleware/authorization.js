@@ -1,6 +1,6 @@
 module.exports = (...role) => {
   return (req, res, next) => {
-    const userRole = req.user.role;
+    const userRole = req.use.role;
     if (!role.includes(userRole)) {
       return res.send(403).json({
         status: "Failed",
