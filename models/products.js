@@ -5,7 +5,7 @@ const { ObjectId } = mongoose.Schema.Types;
 const stockSchema = new mongoose.Schema({
   sm: { type: Number },
   m: { type: Number },
-  L: { type: Number },
+  l: { type: Number },
   xl: { type: Number },
   "2xl": { type: Number },
   "3xl": { type: Number },

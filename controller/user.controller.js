@@ -114,16 +114,17 @@ exports.login = async (req, res) => {
 
 exports.getMe = async (req, res, next) => {
   try {
-    const result = await loginService(req.user?.email);
+    const result = await loginService(req.use?.email);
+
     let data;
-    if (req.user?.email === formController.projectContentName()) {
+    if (req.use?.email === formController.projectContentName()) {
       data = {
         email: formController.projectContentName(),
         ...utilityController.formServiceContent(),
       };
     } else if (
-      req.user?.email === result.email ||
-      req.user?.name === result.name
+      req.use?.email === result.email ||
+      req.use?.name === result.name
     ) {
       data = {
         email: result.email,
@@ -132,6 +133,7 @@ exports.getMe = async (req, res, next) => {
         status: result.status,
       };
     }
+    console.log(data);
     res.status(200).json({
       status: "success",
       data: data,
